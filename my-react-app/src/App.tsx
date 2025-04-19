@@ -1,33 +1,29 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useState} from "react";
 
-function Profile() {
+
+export default function MyApp() {
+    const [count, setCount] = useState(0);
+
+    function handleClick() {
+        setCount(count + 1);
+    }
+
     return (
-        <div className={"col-md-3"}>
-            <img
-                src="https://i.imgur.com/MK3eW3As.jpg"
-                alt="Katherine Johnson"
-            />
+        <div className='border border-success rounded p-4' style={{'backgroundColor': 'white'}}>
+            <h1>Counters that update together</h1>
+            <MyButton count={count} onClick={handleClick} className='btn btn-primary' />
+            <MyButton count={count} onClick={handleClick} className='btn btn-success' />
         </div>
-
     );
 }
 
-export default function Gallery() {
+function MyButton({ count, onClick, className }) {
     return (
-        <>
-            <div className="container-fluid">
-                <div className="row">
-                    <h1>Amazing scientists</h1>
-                    <Profile />
-                    <Profile />
-                    <Profile />
-                    <Profile />
-                </div>
-
-            </div>
-        </>
-
+        <button onClick={onClick} className={className + ' m-2' }>
+            Clicked {count} times
+        </button>
     );
 }
 
